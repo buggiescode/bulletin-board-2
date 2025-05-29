@@ -1,6 +1,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # For Devise User Password stuff
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+
   # Allow server to be hosted on any URL
   config.hosts.clear
   # Allow better_errors to work in online IDE
@@ -34,7 +37,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -85,7 +88,4 @@ Rails.application.configure do
 
   # Allow POST authenticity on Codespaces in dev
   config.action_controller.forgery_protection_origin_check = false
-
-  # For Devise User Password stuff
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end
